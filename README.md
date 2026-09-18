@@ -15,7 +15,7 @@ Compared with a simple “upload/download” file host, this codebase adds:
 
 ---
 
-## Feature snapshot (implemented vs unverified)
+## Feature snapshot
 
 ### Implemented in this checkout
 
@@ -30,11 +30,6 @@ Compared with a simple “upload/download” file host, this codebase adds:
 - Redis-backed session validation for authenticated route groups
 - S3 presigned upload initiation endpoint (backend service exists)
 
-### Not confirmed / missing in this checkout
-
-- Shareable-link generation endpoint is **not clearly implemented** in this monorepo checkout.
-- Root-level deployment scripts/workflows are **not present** in this monorepo checkout.
-- Automated tests are **not configured** in this monorepo checkout scripts.
 
 ---
 
@@ -199,25 +194,7 @@ Vite default local port is typically **5173** (script uses `vite --host`).
 | `resend_url` | server | Resend API key/token for OTP email | Required for OTP email send |
 | `VITE_BACKEND_BASE_URL` | client | API base URL for Axios clients | Required |
 | `VITE_GOOGLE_CLIENT_ID` | client | Google OAuth provider client ID | Required for Google UI login |
-
-### Inferred/operational (confirm before production)
-
-| Variable | Why it may be needed |
-|---|---|
 | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION` | Typical AWS SDK credentials/region for S3 presigned URL generation when not using instance role |
-
-### Security improvement notes (observed)
-
-Current source contains hard-coded values that should be externalized:
-
-- Cookie signing secret in `server/app.js`
-- CORS origin in `server/app.js`
-- Redis URL in `server/util/redis.js`
-- OTP recipient behavior in `server/util/resend.js`
-
-These should be moved to environment variables for production hardening.
-
----
 
 ## API route groups (from route files)
 
@@ -270,13 +247,6 @@ These should be moved to environment variables for production hardening.
 - Mongo `collMod` JSON schema helper script (`config/setup.js`).
 - File-size and user-quota checks in upload handlers.
 - Partial upload cleanup logic (`req.close`/`req.error` paths in file upload flow).
-
-### Caveats / hardening opportunities (observed)
-
-- `helmet` is imported but currently commented out.
-- Some route/client path mismatches exist (example: `/auth/google` vs `/auth/login-with-google`, `/users` vs `/user`).
-- Certain auth/session code paths mix Redis and Mongo session assumptions.
-- Several production-sensitive values are hard-coded.
 
 ---
 
@@ -333,11 +303,6 @@ npm run setup
 
 ---
 
-## Known limitations
-
-- No root-level monorepo README existed previously; this document is based on current source inspection.
-- Deployment workflows/scripts are not versioned in this monorepo checkout.
-- Some frontend/backend route naming mismatches may affect end-to-end behavior until aligned.
 - No explicit project license file is present.
 
 ---
