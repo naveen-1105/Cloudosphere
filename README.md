@@ -6,10 +6,10 @@ Cloudosphere is a secure cloud file-storage and management platform for uploadin
 
 Compared with a simple “upload/download” file host, this codebase adds:
 
-• Deployed 15+ secure REST API endpoints on AWS EC2, enabling concurrent file uploads, downloads with avg response time sub-500ms under load, with session-based auth and user specific RBAC.
-• Architected a hierarchical file management system on AWS S3 supporting flat and folder-based structures, hardened against SQL injection, DoS, CSRF, and invalid uploads via rate limiting, input sanitization, and strict CORS policies.
-• Accelerated frontend delivery by serving the entire frontend from AWS S3 and integrating AWS CloudFront CDN, reducing page load latency to sub-100ms compared to direct server serving across all static assets.
-• Automated the full deployment lifecycle by building a CI/CD pipeline using GitHub Actions with automated testing and health checks on AWS EC2, enabling zero-downtime deployments and eliminating manual release effort entirely.
+- Deployed 15+ secure REST API endpoints on AWS EC2, enabling concurrent file uploads, downloads with avg response time sub-500ms under load, with session-based auth and user specific RBAC.
+- Architected a hierarchical file management system on AWS S3 supporting flat and folder-based structures, hardened against SQL injection, DoS, CSRF, and invalid uploads via rate limiting, input sanitization, and strict CORS policies.
+- Accelerated frontend delivery by serving the entire frontend from AWS S3 and integrating AWS CloudFront CDN, reducing page load latency to sub-100ms compared to direct server serving across all static assets.
+- Automated the full deployment lifecycle by building a CI/CD pipeline using GitHub Actions with automated testing and health checks on AWS EC2, enabling zero-downtime deployments and eliminating manual release effort entirely.
 
 ---
 
